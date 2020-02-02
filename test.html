@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hii</title>
+</head>
+<body>
+	<input id="name" type="text" name="firstField">
+	<button type="submit" onclick="grantGen(document.getElementById('name').value)">OK</button>
+<script type="text/javascript">
+	function grantGen(name){
+  	let arr = name.split(" ");
+  	let ini = "";
+  	switch (arr.length) {
+  		case 1:
+  			ini = arr[0].substring(0,4);
+  			break;
+  		case 2:
+  			ini = arr[0].substring(0,2)+arr[1].substring(0,2);
+  			break;
+  		case 3:
+  			ini = arr[0].substring(0,2)+arr[1].substring(0,1)+arr[2].substring(0,1);
+  			break;
+  		case 4:
+  			ini = arr[0].substring(0,1)+arr[1].substring(0,1)+arr[2].substring(0,1)+arr[3].substring(0,1);
+  			break;
+  		case 5:
+  			ini = arr[0].substring(0,1)+arr[1].substring(0,1)+arr[3].substring(0,1)+arr[4].substring(0,1);
+  			break;
+  		default:
+  			for (var i = 0; i < arr.length; i++) {
+  				if(i==0||i==1||i==arr.length-1||i==arr.length-2)
+  					ini = ini + arr[i].substring(0,1)
+  			}
+  			break;
+  	}
+  	console.log(ini.substring(0,2).toLowerCase()+Math.floor((Math.random()*900)+100)+ini.substring(2,4).toLowerCase());
+  }
+	
+</script>
+</body>
+</html>

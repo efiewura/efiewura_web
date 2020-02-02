@@ -1,0 +1,9 @@
+<div class="card" style="width:400px">
+	<img class="card-img-top img-fluid" src="{{ space.photos | mainImg }}" alt="house">
+	<div class="card-body">
+		<div class="item-location">{{ space.location.district }},{{ space.location.town }} <i class="fas fa-circle"></i>{{ space.location.regionVal() }}</div>
+		<div class="item-name">Listing in Sekyere</div>
+		<div class="item-price">Ghc {{ space.price }} <i class="fa fa-circle"></i> <span class="negotiation-status"> {{ space.negVal() }} </span></div>
+		<a class="workspace-link" [routerLink]="['/view/space/', space.id]">View Efie</a>
+	</div>
+</div>

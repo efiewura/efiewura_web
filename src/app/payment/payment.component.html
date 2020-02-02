@@ -1,0 +1,60 @@
+<main class="container" >
+			<form id="custom-form" class="animated fadeIn delay-1s" *ngIf="!next">
+				<h2>Enter Payment Details</h2>
+				<h4 class="text-center">For now we recieve on only the MTN platform. Thank You</h4>
+				<div style="margin: 50px 0;" class="form-group bmd-form-group">
+					<label class="bmd-label-floating" for="town-name">ACC Name</label>
+					<input type="text" class="form-control" id="town-name" name="name" required [(ngModel)]="name">
+				</div>
+				<div style="margin: 50px 0;" class="form-group bmd-form-group">
+					<label class="bmd-label-floating" for="town-name">ACC Number</label>
+					<input type="tel" class="form-control" id="town-name" name="number" required pattern="([0]|\+233{1})([523]{1})([0-9]{8})" [(ngModel)]="number"> 
+				</div>
+				<div id="custom-form-buttons">
+					<button [disabled]="validate()" type="submit" class="btn btn-primary" (click)="checkOut()">Check Out</button>
+				</div>
+			</form>
+			<form id="custom-form" class="animated fadeIn delay-1s" *ngIf="next">
+				<div class="circle-loader" [ngClass]="loaderClass" *ngIf="loading">
+					 <div class="checkmark draw" [style.display]="check"></div>
+				</div>
+				<div *ngIf="!loading">	
+					<h2>Review and Submit</h2>
+					<div class="card">
+							<h3 class="text-center">GHS10.00</h3>
+						<div class="card-body">
+							<h5>Efiewura Ad Services</h5>
+							<p>The Ad will be up for 3 months to help keep current</p>
+							<hr>
+							<h4>Pay With</h4>
+							<p>{{ name }}</p>
+							<p>{{ number }}</p>
+
+						</div>
+					</div>
+					<div class="card bg-efiewura-defaul">
+							<h3 class="text-center">GHS {{ rentAmount }}</h3>
+						<div class="card-body">
+							<p class="text-center">You Pay</p>
+							<h5 class="text-center">GHS {{ totalAmount }}</h5>
+							<p class="text-center">Details <button [ngClass]="caretClass" (click)="toggleDrop()"></button></p>
+							<hr class="text-efiewura-white">
+							<table class="w-100" [style.display]="display" >
+								<tr>
+									<td>Amount</td>
+									<td>GHS {{ rentAmount }}</td>
+								</tr>
+								<tr>
+									<td>Fees</td>
+									<td>GHS {{ feeAmount }}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div id="custom-form-buttons">
+						<button type="submit" class="btn btn-primary" (click)="pay()">PAY</button>
+					</div>
+				</div>
+			</form>
+</main>	
+<ngx-spinner></ngx-spinner>

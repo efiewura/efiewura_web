@@ -1,0 +1,228 @@
+
+
+<ng-sidebar-container style="height: 100vh" (onBackdropClicked)="_onBackdropClicked()"> 
+	      <ng-sidebar [(opened)]="_opened"
+	      			  [showBackdrop]="_showBackdrop" style="background: white">
+<main class="" style="background: white;width: 90vw;">
+      <form id="custom-form" class="form-horizontal pt-2" method="POST" action="">
+      	 <div class="clearfix">
+		  <button class="float-left btn btn-primary" (click)="updateSpace()">EDIT</button>
+      	  <button type="button" class="close" closeSidebar>&times;</button>
+		</div>
+          <h3 class="text-center w-100">Make Changes Here</h3>
+          <h3 class="custom-form-subhead">1. Your Details</h3>
+          <div class="row">
+          	<div class="col-md-4">
+              <img (click)="profileClick()" [style.cursor]="'pointer'" style="width: 100%" [src]="profile">
+          	</div>
+          	<div class="col-md-8">
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-name">Name</label>
+            <input type="text" class="form-control" id="efiewuraName" name="efiewuraName" [(ngModel)]="space.efiewura.name">
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-email">Email</label>
+            <input type="email" class="form-control" id="host-email" name="email" [(ngModel)]="space.efiewura.email">
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-contact">Contact Number</label>
+            <input type="tel" class="form-control" id="host-contact" name="number" pattern="([0]|\+233{1})([523]{1})([0-9]{8})" [(ngModel)]="space.efiewura.number">
+          </div>
+          	</div>
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-address">Address</label>
+            <input type="text" class="form-control" id="host-address" name="Address" >
+          </div>
+          <hr>
+          <h3 class="custom-form-subhead">2. Details of Listing</h3>
+          <h5 style="font-weight: bold;">Property type</h5>
+          <div class="row">
+          	<div class="col-md-4">
+          <div class="form-check form-check-radio">
+            <label for="house" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="house"
+                     value="house" [(ngModel)]="space.type">
+              House
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="hotel" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="hotel"
+                     value="hotel" [(ngModel)]="space.type">
+              Hotel
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="guest-house" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="guest-house"
+                     value="guest-house" [(ngModel)]="space.type">
+              Guest House
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="hostel" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="hostel"
+                     value="hostel" [(ngModel)]="space.type">
+              Hostel
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          	</div>
+          	<div class="col-md-8">
+          		<div>
+          			tags
+          		</div>
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="tag">Add Tag</label>
+            <input type="text" class="form-control" name="tag">
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="description">Description</label>
+            <input type="text" class="form-control" id="description" name="description" [(ngModel)]="space.description">
+          </div>
+          	</div>
+          </div>
+          <hr>
+          <h3 class="custom-form-subhead">3. Location of Listing</h3>
+          <div class="row">
+          	<div class="col-md-4"><div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="region">Region</label>
+            <select class="form-control" data-style="btn btn-link" id="region" name="region" [(ngModel)]="space.location.region" style="height: 36px !important">
+              <option value>Select an option</option>
+              <option value="AS">Ashanti</option>
+              <option value="BA">Brong-Ahafo</option>
+              <option value="CE">Central</option>
+              <option value="EA">Eastern</option>
+              <option value="GA">Greater Accra</option>
+              <option value="NO">Northern</option>
+              <option value="UE">Upper East</option>
+              <option value="UW">Upper West</option>
+              <option value="VO">Volta</option>
+              <option value="WE">Western</option>
+            </select>
+          </div>
+          	</div>
+          	<div class="col-md-4">
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-address">District</label>
+            <input list="district" class="form-control" name="District" autocomplete="off" [(ngModel)]="space.location.district">
+            <datalist id="district"> 
+            </datalist>
+          </div>
+          	</div>
+          	<div class="col-md-4">
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="town">Town</label>
+            <input type="text" class="form-control" id="town" name="city"  list="towns"  [(ngModel)]="space.location.town">
+           <datalist id="towns">
+          </datalist>
+          </div>
+          	</div>
+          </div>
+          
+          <hr>
+          <h3 class="custom-form-subhead">4. Photos of Listing</h3>
+    	<div class="d-flex other-pic-item">
+    		<div *ngFor="let img of space.photos" class="ml-1 mr-5" style="width: 600px">
+    			<div style="border-bottom-left-radius:10px;background:#f0f0f0;height:35px;width:25px;top:35px;left:-25px;position:relative;padding: 5px;"><i class="fa fa-home" style="color: #aaa"></i></div>
+    			<div [style.opacity]="img.main? '30%':'0%'" style="border-bottom-left-radius:10px;background:#004d40;height:35px;width:25px;top:0px;left:-25px;position:relative;padding: 5px;cursor: pointer" (click)="makeMain()"></div>
+        		<img  class="img-raised rounded img-fluid" [src]="img.location" alt="" >
+        	</div>
+        </div>
+
+          <hr>
+          <h3 class="custom-form-subhead">5. Price of listing</h3>
+          <div class="row">
+          	<div class="col-md-6">
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="price"></label>
+            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="space.price" placeholder="price">
+          </div>
+          	</div>
+          	<div class="col-md-6">
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="negotiation" id="negotiable"
+                      checked [(ngModel)]="space.negFlag">
+              Negotiable
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="negotiation" id="non-negotiable"
+                     [(ngModel)]="space.negFlag">
+              Non-negotiable
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          	</div>
+          </div>
+      </form>
+</main>
+      </ng-sidebar>
+            <div ng-sidebar-content>
+            	<button [style.left]="buttonHover? '0':'-50px'" style="position: absolute;top:10vh; width:80px;height: 80px;background: #004d40;border-radius: 20px 20px 0 0;border:none;transition-duration: 200ms;transition-timing-function: ease;color:white;transform: rotate(90deg)" (mouseenter)="buttonHover=true" (mouseleave)="buttonHover=false" (click)="_toggleSidebar()">EDIT</button>
+<main class="container">
+<section id="view-listing-head">
+    <div class="main-pic animated fadeIn delay-1s">
+        <img id="mainPrev" class="img-raised rounded img-fluid" src="" alt="">
+    </div>
+    <div class="animated fadeIn" id="listing-details" style="width: 100%;height: 100%;">
+        <h2>Listing in {{ space.location.town }}</h2>
+        <p style="font-size: 1.1em;"><span style="font-weight: 400;">Region :</span> {{ space.location.region | regionValue }} Region</p>
+        <p style="font-size: 1.1em;"><span style="font-weight: 400;">District :</span> {{ space.location.district }} </p>
+        <p style="font-size: 1.1em;"><span style="font-weight: 400;">Price :</span> GHS {{ space.price }} negotiable</p>
+        <h3>Description</h3>
+        <p style="font-size: 1.1em;">{{ space.description }}</p>
+    </div>
+</section>
+
+
+<div style="margin-top: 50px;" class="container">
+    <h3>Click on the other pictures of the listing to view them</h3>
+</div>
+
+<section class=" animated fadeIn delay-1s" id="other-pics">
+    <div class="d-flex other-pic-item">
+        <img *ngFor="let img of space.photos" class="img-raised rounded img-fluid ml-1 mr-1" [src]="img.location" alt="" >
+    </div>
+</section>
+<div class="container" style="padding:5px;width:50%; margin-top: 80px; margin-bottom: 60px;border-top: solid #004d40 2px;border-bottom: solid #004d40 2px; border-radius:5px ">
+		<h3 class="contacts-text-title text-center">Contact the host to book your room</h3>
+		<div class="row ">
+			<div class="col-md-5">
+				<img src="{{ profile }}" style="width: 100%" class="Thumbnail ">
+			</div>
+			<div class="col-md-7">
+				<p class="contacts-text text-uppercase"> {{ space.efiewura.name }} </p>
+				<p class="contacts-text">{{ space.efiewura.number }}</p>
+			</div>
+		</div>
+</div>
+</main>
+</div>
+</ng-sidebar-container><ng-sidebar-container>
+	      <ng-sidebar [(opened)]="_opened">
+        <p>Sidebar contents</p>
+      </ng-sidebar>

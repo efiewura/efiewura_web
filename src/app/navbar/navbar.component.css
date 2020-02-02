@@ -1,0 +1,11 @@
+.active {
+  color: var(--teal);
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.vis-nav{
+	background: none !important;
+	box-shadow: 0px 0px 0px 0px, 0px 0px 0px 0px !important;
+	color: #fff;
+}

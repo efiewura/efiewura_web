@@ -1,0 +1,14 @@
+<app-search [searchType]="'aftSearch'"></app-search>
+<h2 style=" margin-bottom: 20px;">Search Results</h2>
+  <h3>We found the following listings for you</h3>
+  <p style="font-weight: bold; font-size: 1.2em;">{{ spaces ? (spaces.length):0 }} results found</p>
+  <div id="search-images">
+    <div class="card" *ngFor="let space of spaces">
+      <img class="card-img-top" src="assets/img/21.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p>{{space.location.region}} Region ~ {{space.location.district}}</p>
+        <p>Ghc {{space.price}}</p>
+        <a [routerLink]="['/view/space/', space.id]">View Listing</a>
+      </div>
+    </div>
+  </div>

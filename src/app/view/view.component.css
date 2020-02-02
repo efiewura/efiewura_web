@@ -1,0 +1,27 @@
+
+/* View Template */
+.details-img{
+	width: 80%
+	;
+}
+
+.details-text{
+	font-family:monospace; 
+	font-size: 1.5em !important;
+	margin: 20px 0 20px 0;
+	font-weight: lighter;
+}
+
+.details-text-lable{
+	font-weight: normal;
+}
+
+.details-text-description-lable{
+	font-weight: lighter;
+	font-size: 2em;
+	margin: 20px 0 20px 0;
+}
+
+.bmd-form-group{
+	padding-top: 50px !important;
+}

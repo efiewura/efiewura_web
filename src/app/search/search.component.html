@@ -1,0 +1,114 @@
+<div [ngSwitch]="searchType">
+	<form class="form-inline" *ngSwitchCase="'nav'">
+		<input #searchQ class="form-control" type="search" placeholder="Search" aria-label="Search" ngModule>
+		<div id="nav-button">
+			<button class="btn btn-primary btn-md my-2 my-sm-0 ml-3" (click)="ev($event);router.navigate(['/search'],{queryParams: {q:searchQ.value}});">Search</button>
+		</div>
+	</form>
+	<form id="custom-form" class="form-horizontal animated fadeIn delay-1s" *ngSwitchCase="'b4Search'">
+		<h2>Find a home in your preferred location</h2>
+		<div style="margin: 50px 0;" class="form-group bmd-form-group">
+			<label class="bmd-label-floating" for="town-name">Town Name</label>
+			<input #queryInput type="text" class="form-control" id="town-name" name="q">
+		</div>
+		<h4 style="font-weight: bold;">Filters : </h4>
+		<h4 style="font-weight: bold;">Property type</h4>
+		<div class="form-check form-check-radio">
+			<label for="house" class="form-check-label">
+				<input #typeIN class="form-check-input" type="radio" name="type" id="house" value="house"/>House
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+		</div>
+		<div class="form-check form-check-radio">
+			<label for="hotel" class="form-check-label">
+				<input #typeIN class="form-check-input" type="radio" name="type" id="hotel" value="hotel"/>Hotel
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+		</div>
+		<div class="form-check form-check-radio">
+			<label for="guest-house" class="form-check-label">
+				<input #typeIN class="form-check-input" type="radio" name="type" id="guest-house" value="guest-house"/>Guest House
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+		</div>
+		<div class="form-check form-check-radio">
+			<label for="hostel" class="form-check-label">
+				<input #typeIN class="form-check-input" type="radio" name="type" id="hostel" value="hostel"/>Hostel Room
+				<span class="circle">
+					<span class="check"></span>
+				</span>
+			</label>
+		</div>
+		<div class="form-group" style="margin-top: 30px;">
+		    <h4 style="font-weight: bold;">Region</h4>
+			<select #regionIN id="region" class="custom-select rounded-0" name="rg">
+				<option value disabled>Select an option</option>
+				<option value="AS">Ashanti</option>
+				<option value="BA">Brong-Ahafo</option>
+				<option value="CE">Central</option>
+				<option value="EA">Eastern</option>
+		 		<option value="GA">Greater Accra</option>
+		 		<option value="NO">Northern</option>
+		 		<option value="UE">Upper East</option>
+		 		<option value="UW">Upper West</option>
+		 		<option value="VO">Volta</option>
+		 		<option value="WE">Western</option>
+		 		<option style="display: none" disabled="">N/A</option>
+		 	</select>
+		</div>
+		<div class="form-group" style="margin-top: 30px;">
+			<h4 style="font-weight: bold;">District</h4>
+			<input list="district" class="form-control" id="district-input" name="ds" autocomplete="off">
+			<datalist #districtIN id="district">
+				<option>Select an option</option>
+			</datalist>
+		</div>
+		<div id="custom-form-buttons">
+			<button type="submit" class="btn btn-primary" (click)="ev($event);
+			router.navigate(['/search'],{queryParams: {q:queryInput.value,type:typeIN.value,region:regionIN.value==''?null:regionIN.value=='',district:districtIN.value}});">Search</button>
+			<button type="reset" class="btn btn-primary">Reset</button>
+		</div>
+	</form>
+	<form *ngSwitchCase="'aftSearch'">
+		<h2>Search again</h2>
+		<div class="form-row" style="">
+			<div class="col-12 col-md-4 form-group" style="">
+				<input #queryInput class="custom-search-inputs" type="text" placeholder="Search Town: Eg, Accra" style="width: 100%;padding-bottom: 0;margin-top: 5px;height: 60px; padding-left: 10px;">
+			</div>
+			<div class="col-12 col-md-4 form-group">
+				<select #regionIN class="custom-select rounded-0 input-md" style="width: 100%;padding-bottom: 0px;margin-top: 5px;height: 60px;" name="rg">
+					<option disabled selected>REGIONS</option>
+					<option value="AS">Ashanti</option>
+					<option value="BA">Brong-Ahafo</option>
+					<option value="CE">Central</option>
+					<option value="EA">Eastern</option>
+					<option value="GA">Greater Accra</option>
+					<option value="NO">Northern</option>
+					<option value="UE">Upper East</option>
+					<option value="UW">Upper West</option>
+					<option value="VO">Volta</option>
+					<option value="WE">Western</option>
+					<option style="display: none" disabled="">N/A</option>
+				</select>
+			</div>
+			<div class="col-12 col-md-4 form-group">
+				<input #districtIN class="custom-search-inputs" list="district" placeholder="DISTRICT" name="District" autocomplete="on" style="width: 100%;padding-bottom: 0;margin-top: 5px;height: 60px; padding-left: 10px;">
+				<datalist id="district">
+					<option value="Adansi North District">
+				</datalist>
+			</div>
+		</div>
+		<div class="row" style="">
+			<div style="display: flex; flex-direction: row;justify-content: center;" class="form-group col-12">
+				<button id="next" class="btn btn-primary" style="padding: 10px 30px;font-size: 1.3em;" (click)="ev($event);router.navigate(['/search'],{queryParams: {q:queryInput.value,region:regionIN.value,district:districtIN.value}});">Search
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

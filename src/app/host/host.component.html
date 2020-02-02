@@ -1,0 +1,219 @@
+<!--HOSTING FORM-->
+<main class="container">
+  <div class="row">
+    <div class="col-sm-12 offset-sm-0 col-md-8 offset-md-2 animated fadeIn delay-1s">
+      <form id="custom-form" class="form-horizontal" method="POST" action="">
+        <div class="loader" *ngIf="loading"></div>
+        <div  *ngIf="!loading">
+          <h2>Provide The Details For Your Listing</h2>
+          <h4>Fill the form below with the details of the particular property you want to host. To make
+            transactions
+            easy make sure you input accurate information about the property
+          </h4>
+          <div class="row">
+            <div class="col-md-8">
+               <h5 class="custom-form-subhead">1. Please enter your details</h5>
+              <div class="form-group bmd-form-group">
+                <label class="bmd-label-floating" for="host-name">Name</label>
+                <input type="text" class="form-control" id="efiewuraName" name="efiewuraName" 
+                       [(ngModel)]="efiewura.name" required (keyup)="valid[0]=false">
+                <div id="nameAlert" class="alert alert-warning" *ngIf="valid[0]">
+                  <button type="button" class="close" data-dismiss="alert" (click)="valid[0]=false">&times;</button>
+                  <strong>Required!</strong> Name  to move on
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" style="padding: 50px 0 0 30px">
+              <img (click)="profileClick()" [style.cursor]="'pointer'" src="{{profileUrl}}">
+            </div>
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-email">Email</label>
+            <input type="email" class="form-control" id="host-email" name="email" [(ngModel)]="efiewura.email">
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-contact">Contact Number</label>
+            <input type="tel" class="form-control" id="host-contact" name="number" [(ngModel)]="efiewura.number" #efNum="ngModel" required="" (keyup)="valid[1]=false" (change)="patternCheck()" pattern="([0]|\+233{1})([523]{1})([0-9]{8})">
+            <div id="numberAlert" class="alert alert-warning" *ngIf="valid[1]">
+              <button type="button" class="close" data-dismiss="alert" (click)="valid[1]=false">&times;</button>
+              <strong>Required!</strong> Number  to move on
+            </div>
+            <div id="numberError" class="alert alert-danger" *ngIf="valid[2]">
+              <button type="button" class="close" data-dismiss="alert" (click)="valid[2]=false">&times;</button>
+              <strong>Wrong Format!</strong> Number format error
+            </div>
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-address">Address</label>
+            <input type="text" class="form-control" id="host-address" name="Address" >
+          </div>
+
+          <h5 class="custom-form-subhead">2. Please provide the details of your listing</h5>
+          <h5 style="font-weight: bold;">Property type</h5>
+          <div class="form-check form-check-radio">
+            <label for="house" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="house"
+                     value="house" [(ngModel)]="space.type">
+              House
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="hotel" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="hotel"
+                     value="hotel" [(ngModel)]="space.type">
+              Hotel
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="guest-house" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="guest-house"
+                     value="guest-house" [(ngModel)]="space.type">
+              Guest House
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label for="hostel" class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="hostel"
+                     value="hostel" [(ngModel)]="space.type">
+              Hostel
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="description">Description</label>
+            <div class="badge-box" [innerHTML]="tagDiv">
+            </div>
+            	<span class="badge badge-secondary" *ngIf="location.town!=undefined">{{location.town}}</span>
+            	<span class="badge badge-secondary" *ngIf="space.type!=undefined">{{space.type}}</span>
+            <input list="tags" class="form-control" rows="3" name="description"  [(ngModel)]="tag" (select)="addTag(tag)"  (keyup.space)="addNewTag(tag,0)" autocomplete="off">
+            <datalist id="tags">
+              <option *ngFor="let tag of tags" [value]="tag.id">{{tag.name}}
+              </option>
+          </datalist>
+          </div>
+
+          <div class="form-group">
+            <label style="color: rgba(0,0,0,0.5);" for="region">Region</label>
+            <select class="form-control" data-style="btn btn-link" id="region" name="region"  [(ngModel)]="location.region" #locReg="ngModel" (change)="valid[3]=false">
+              <option value>Select an option</option>
+              <option value="AS">Ashanti</option>
+              <option value="BA">Brong-Ahafo</option>
+              <option value="CE">Central</option>
+              <option value="EA">Eastern</option>
+              <option value="GA">Greater Accra</option>
+              <option value="NO">Northern</option>
+              <option value="UE">Upper East</option>
+              <option value="UW">Upper West</option>
+              <option value="VO">Volta</option>
+              <option value="WE">Western</option>
+            </select>
+            <div id="regionAlert" class="alert alert-warning" *ngIf="valid[3]">
+              <button type="button" class="close" data-dismiss="alert" (click)="valid[3]=false">&times;</button>
+              <strong>!</strong> Region must be selected
+            </div>
+          </div>
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="host-address">District</label>
+            <input list="district" class="form-control" name="District" autocomplete="off" [(ngModel)]="location.district">
+            <datalist id="district"> 
+            	<option *ngFor="let district of districts" [value]="district">{{district}}
+              </option>
+            </datalist>
+          </div>
+
+
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="town">Town</label>
+            <input type="text" class="form-control" id="town" name="city"  [(ngModel)]="location.town" list="towns" #locReg="ngModel" (change)="addTag(location.town)" (keyup)="valid[4]=false">
+           <datalist id="towns">
+              <option *ngFor="let town of towns" [value]="town.id">{{town.name}}
+              </option>
+          </datalist>
+            <div id="townAlert" class="alert alert-warning" *ngIf="valid[4]">
+              <button type="button" class="close" data-dismiss="alert" (click)="valid[4]=false">&times;</button>
+              <strong>!</strong> Town 
+            </div>
+          </div>
+
+          <h5 class="custom-form-subhead">3. Photos of listing</h5>
+            <app-photos-upload [upload]="upload"  (photos)="getPhotos($event)"></app-photos-upload>
+        <div class="d-flex other-pic-item" style="width:100%;overflow-x: auto">
+        <div *ngFor="let img of photos" class="ml-1 mr-5" style="width: 600px">
+          <div style="border-bottom-left-radius:10px;background:#f0f0f0;height:35px;width:25px;top:35px;left:-25px;position:relative;padding: 5px;"><i class="fa fa-home" style="color: #aaa"></i></div>
+          <div [style.opacity]="img.main? '30%':'0%'" style="border-bottom-left-radius:10px;background:#004d40;height:35px;width:25px;top:0px;left:-25px;position:relative;padding: 5px;cursor: pointer" (click)="makeMain()"></div>
+            <img  class="img-raised rounded img-fluid" src="{{ img.url }}" alt="" >
+          </div>
+        </div>
+          <h5 class="custom-form-subhead">4. Price of listing</h5>
+          <div class="form-group bmd-form-group">
+            <label class="bmd-label-floating" for="price">Price in Ghana Cedis</label>
+            <input type="number" class="form-control" id="price" name="price" 
+                   [(ngModel)]="space.price" #spPrice="ngModel" (click)="valid[5]=false" required>
+            <div id="priceAlert" class="alert alert-warning" *ngIf="valid[5]">
+              <button type="button" class="close" data-dismiss="alert" (click)="valid[5]=false">&times;</button>
+              <strong>!</strong> Price  to move on
+            </div>
+          </div>
+
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="negotiation" id="negotiable"
+                     [value]="true" checked [(ngModel)]="space.negFlag">
+              Negotiable
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div class="form-check form-check-radio">
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="negotiation" id="non-negotiable"
+                     [value]="false" [(ngModel)]="space.negFlag">
+              Non-negotiable
+              <span class="circle">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div style="margin-top: 30px; margin-bottom: 30px;" class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="" name="agree" required [(ngModel)]="valid[6]">
+              By checking this, you hereby agree with all the terms and conditions associated with using the
+              Efiewura Platform
+              <span class="form-check-sign">
+                              <span class="check"></span>
+                          </span>
+            </label>
+          </div>
+          <div id="custom-form-buttons">
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#checkOutModal" (click)="Upload()">Host
+            </button>
+            <button type="reset" class="btn btn-primary btn-link">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<!--HOSTING FORM END-->
+<app-modal id="custom-modal-1">
+    <button (click)="closeModal('custom-modal-1');" class="close-btn"><i class="fa fa-times"></i></button>
+    <app-payment [space]="space" (load)="load($event)"></app-payment>
+</app-modal>
+<app-footer></app-footer>

@@ -1,0 +1,16 @@
+<app-banner></app-banner>
+<app-map-section></app-map-section>
+       <div *ngFor="let spaces of spacesByRegion |keyvalue">
+       	
+
+    <h2 class="workspace-head"><span class="first-word">Homes</span> in {{spaces.key | regionValue}}</h2>
+    <p class="workspace-paragraph">Find yourself a home that suits your exact needs</p>
+    <owl-carousel-o [options]="customOptions">
+    	<ng-container *ngFor="let space of spaces.value">
+      <ng-template carouselSlide [id]="space.id">
+      	<app-card [space]="space"></app-card>
+      </ng-template>
+    </ng-container> 
+  </owl-carousel-o>
+       </div>
+<app-footer></app-footer>
