@@ -7,10 +7,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Space } from './space';
 @Injectable({ providedIn: 'root' })
 export class SpaceService{
-		private spacesUrl = '/api/v1/spaces?cat=';
-		private spaceUrl = '/api/v1/space';
-		private advancedSearch= query => '/api/v1/spaces/'+query+'search?q=';
-		private searchUrl = '/api/v1/spaces/search?q='; //URL to web api
+  rootURL = 'http://api.efiewuragh.com';
+		private spacesUrl = this.rootURL+'/api/v1/spaces?cat=';
+		private spaceUrl = this.rootURL+'/api/v1/space';
+		private advancedSearch= query => this.rootURL+'/api/v1/spaces/'+query+'search?q=';
+		private searchUrl = this.rootURL+'/api/v1/spaces/search?q='; //URL to web api
 		httpOptions = {
 			headers: new HttpHeaders({ 'Accept': 'application/json' })
 		};

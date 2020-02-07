@@ -23,6 +23,7 @@ export class HostComponent implements OnInit {
 	space = new Space();
 	efiewura = new Efiewura();
 	location = new Location();
+  rootURL = 'http://api.efiewuragh.com';
 	tags:Tag[];
 	towns:Tag[];
 	spaceTags:Tag[] = [];
@@ -193,7 +194,7 @@ makeMain(){
 			this.space.location = this.location;
 			this.space.tags = this.spaceTags;
 			this.space.photos = this.photos;
-			this.http.post('/api/v1/space',JSON.stringify(this.space))
+			this.http.post(this.rootURL+'/api/v1/space',JSON.stringify(this.space))
 				.subscribe((response)=>{
 							this.resp = response;
 							console.log(this.resp);

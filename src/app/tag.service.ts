@@ -11,11 +11,12 @@ import { Tag } from './tag';
 export class TagService {
 
 
-		private TagsUrl = '/api/v1/tags?cat=';
-		private TownTagsUrl = '/api/v1/tags/town/search?cat=';
-		private TagUrl = '/api/v1/tag/'; //URL to web api
-		private searchUrl = '/api/v1/tags/search?q='
-		private searchTownUrl = '/api/v1/tags/town/search?q='
+  rootURL = 'http://api.efiewuragh.com';
+		private TagsUrl = this.rootURL+'/api/v1/tags?cat=';
+		private TownTagsUrl = this.rootURL+'/api/v1/tags/town/search?cat=';
+		private TagUrl = this.rootURL+'/api/v1/tag/'; //URL to web api
+		private searchUrl = this.rootURL+'/api/v1/tags/search?q='
+		private searchTownUrl = this.rootURL+'/api/v1/tags/town/search?q='
 		httpOptions = {
 			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 		};

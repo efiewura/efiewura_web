@@ -16,6 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class PaymentComponent implements OnInit {
 	@Input() space: Space;
 	@Output() load: EventEmitter<boolean> = new EventEmitter()
+  rootURL = 'http://api.efiewuragh.com';
 	display:string;
 	name:string = '';
 	number:string = '';
