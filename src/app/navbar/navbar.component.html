@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg" [ngClass]="{'vis-nav':!navScrolled,'fixed-top':navScrolled}" fixed-top color-on-scroll="100" id="sectionsNav">
   <div class="container">
-    <div class="navbar-translate">
+    <div [ngClass]="{'navbar-translate':true,'nav-open':toggled}">
       <a class="navbar-brand" href="#">
         <img [src]="logoUrl" alt="" class="img-fluid logo">
         <span style="font-size: 0.9em; font-weight: bold;"> EFIEWURA</span>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-              aria-label="Toggle navigation">
+      <button [ngClass]="{'navbar-toggler':true,'toggled':toggled}" type="button" data-toggle="collapse" aria-expanded="false"
+              aria-label="Toggle navigation" (click)="onClick()">
         <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon"></span>
         <span class="navbar-toggler-icon"></span>

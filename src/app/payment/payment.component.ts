@@ -71,7 +71,7 @@ export class PaymentComponent implements OnInit {
 						console.log(error)
 					});*/
 	this.loading = true;
-	this.http.patch('/api/v1/space/'+this.space.id,JSON.stringify({grant:this.grant}), this.httpOptions)
+	this.http.patch(this.rootURL+'/api/v1/space/'+this.space.id,JSON.stringify({grant:this.grant}), this.httpOptions)
 			.subscribe((reponse)=>{
 	(async ()=>{
 						console.log(reponse);

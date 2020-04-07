@@ -153,7 +153,7 @@
 
           <h5 class="custom-form-subhead">3. Photos of listing</h5>
             <app-photos-upload [upload]="upload"  (photos)="getPhotos($event)"></app-photos-upload>
-        <div class="d-flex other-pic-item" style="width:100%;overflow-x: auto">
+        <div class="d-flex other-pic-item" style="width:100%;overflow-y: auto">
         <div *ngFor="let img of photos" class="ml-1 mr-5" style="width: 600px">
           <div style="border-bottom-left-radius:10px;background:#f0f0f0;height:35px;width:25px;top:35px;left:-25px;position:relative;padding: 5px;"><i class="fa fa-home" style="color: #aaa"></i></div>
           <div [style.opacity]="img.main? '30%':'0%'" style="border-bottom-left-radius:10px;background:#004d40;height:35px;width:25px;top:0px;left:-25px;position:relative;padding: 5px;cursor: pointer" (click)="makeMain()"></div>

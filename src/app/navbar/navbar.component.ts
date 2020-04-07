@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { Router, NavigationEnd} from '@angular/router';
+declare var toggle_navs: any;
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ export class NavbarComponent implements OnInit {
 logoUrl:string;
 navScrolled: boolean = false;
 navDis:boolean = true;
+toggled:boolean;
 @HostListener('window:scroll', ['$event'])
 onWindowScroll($event) {
     
@@ -44,6 +46,17 @@ handleRouteChange = () => {
   }
 
 
+  onClick(){
+    //alert("Hello");
+    //toggle_navs();
+    let navbar_menu_visible;
+  if (this.toggled) {
+    this.toggled = false;
+  }else{
+    this.toggled = true;
+  }
+  }
   ev(e): void {
 	}
 }
+

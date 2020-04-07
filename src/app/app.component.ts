@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+declare const toggle_navs: any;
 
 @Component({
   selector: 'app-root',
