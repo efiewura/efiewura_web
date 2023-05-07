@@ -25,7 +25,7 @@
     "bootstrap-datetimepicker": "0.0.7",
     "bootstrap-material-design": "^4.1.2",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash.range": "^3.2.0",
     "material-kit": "^2.0.4",
     "moment": "^2.24.0",
